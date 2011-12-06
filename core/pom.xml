@@ -20,7 +20,7 @@
   <artifactId>core</artifactId>
   <packaging>jar</packaging>
   <name>ZXing Core</name>
-  <version>1.6-SNAPSHOT</version>
+  <version>1.7</version>
   <description>Core barcode encoding/decoding library</description>
   <url>http://code.google.com/p/zxing</url>
   <inceptionYear>2007</inceptionYear>
@@ -57,11 +57,34 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
+      </plugin> 
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
+    <extensions>
+      <extension>
+        <groupId>org.springframework.build.aws</groupId>
+        <artifactId>org.springframework.build.aws.maven</artifactId>
+        <version>3.0.0.RELEASE</version>
+      </extension>
+    </extensions>
   </build>
-  <distributionManagement>
+  <distributionManagement>     
     <repository>
+      <id>s3</id>
+      <url>s3://releases.logicalpractice.com/r</url>
+    </repository>
+    <!-- <repository>
       <id>sonatype-nexus-staging</id>
       <name>Sonatype Nexus Staging</name>
       <url>http://oss.sonatype.org/content/groups/google-with-staging/</url>
@@ -70,7 +93,7 @@
       <id>sonatype-nexus-snapshots</id>
       <name>Sonatype Nexus Snapshots</name>
       <url>http://oss.sonatype.org/content/repositories/google-snapshots/</url>
-    </snapshotRepository>
+    </snapshotRepository> -->
   </distributionManagement>
   <profiles>
     <profile>
